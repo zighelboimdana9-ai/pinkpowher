@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pink Powher – Breast Cancer Awareness & Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--blush:#f9e4ec;--rose:#e8a0b4;--deep:#c45c82;--magenta:#a83060;--petal:#fdf0f5;--white:#ffffff;--charcoal:#3a2530;--muted:#8a6070;--accent:#f4c2d4;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--charcoal);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;width:100%;z-index:200;background:rgba(255,255,255,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--accent);display:flex;align-items:center;justify-content:space-between;padding:0 3.5vw;height:64px;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.38rem;font-weight:700;color:var(--magenta);letter-spacing:-0.5px;cursor:pointer;display:flex;align-items:center;gap:0.5rem;flex-shrink:0;}
+.nav-logo span{color:var(--rose);font-style:italic;}
+.nav-badge{font-size:0.6rem;background:var(--blush);color:var(--deep);padding:0.16rem 0.55rem;border-radius:20px;font-weight:700;letter-spacing:0.04em;white-space:nowrap;}
+.nav-links{display:flex;gap:1.4rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.8rem;font-weight:500;text-decoration:none;color:var(--charcoal);letter-spacing:0.02em;transition:color .2s;cursor:pointer;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:var(--magenta);}
+
+/* Hide nav badge only when Give Back section is active */
+#giveback.active ~ nav .nav-badge,
+body.giveback-active .nav-badge { display: none; }
+
+section{display:none;padding-top:64px;min-height:100vh;}section.active{display:block;}
+.btn{padding:.75rem 1.8rem;border-radius:50px;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .25s;border:none;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}
+.btn-primary{background:var(--magenta);color:#fff;}.btn-primary:hover{background:var(--deep);transform:translateY(-2px);box-shadow:0 8px 22px rgba(168,48,96,.3);}
+.btn-outline{background:transparent;color:var(--magenta);border:2px solid var(--rose);}.btn-outline:hover{background:var(--blush);}
+.btn-white{background:white;color:var(--magenta);}.btn-white:hover{background:var(--blush);}
+.section-inner{max-width:1080px;margin:0 auto;padding:65px 5vw;}
+.section-tag{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);font-weight:700;margin-bottom:.65rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.85rem,4.2vw,2.9rem);color:var(--charcoal);line-height:1.15;margin-bottom:1.1rem;}
+.section-title em{color:var(--magenta);font-style:italic;}
+.divider{width:52px;height:3px;background:linear-gradient(90deg,var(--magenta),var(--rose));border-radius:2px;margin-bottom:2rem;}
+.form-group{margin-bottom:1rem;}.form-group label{font-size:.79rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:.32rem;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.7rem .95rem;border:1.5px solid var(--accent);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.87rem;color:var(--charcoal);background:var(--petal);transition:border .2s;outline:none;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--rose);}
+.form-group textarea{min-height:110px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}@media(max-width:580px){.form-row{grid-template-columns:1fr;}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}.fade-in.visible{opacity:1;transform:none;}
+.toast{position:fixed;bottom:1.8rem;right:1.8rem;background:var(--magenta);color:white;padding:.9rem 1.35rem;border-radius:14px;font-size:.85rem;font-weight:500;box-shadow:0 8px 22px rgba(168,48,96,.35);transform:translateY(100px);opacity:0;transition:all .35s;z-index:999;}.toast.show{transform:translateY(0);opacity:1;}
+
+/* HOME */
+.hero-wrap{background:linear-gradient(135deg,var(--petal) 0%,var(--blush) 55%,var(--accent) 100%);min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 5vw 60px;position:relative;overflow:hidden;}
+.hero-wrap::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,var(--accent),transparent 70%);opacity:.45;}
+.hero-wrap::after{content:'';position:absolute;bottom:-80px;left:-60px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,var(--rose),transparent 70%);opacity:.28;}
+.hero-eyebrow{font-size:.73rem;letter-spacing:.22em;text-transform:uppercase;color:var(--deep);font-weight:700;margin-bottom:.95rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,7vw,5.5rem);line-height:1.05;color:var(--magenta);margin-bottom:1.3rem;}
+.hero-title em{font-style:italic;color:var(--deep);}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:530px;line-height:1.78;margin-bottom:2rem;}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center;margin-bottom:3.2rem;}
+.hero-stats{display:flex;gap:2.2rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;}
+.stat-box{background:white;border-radius:15px;padding:1.2rem 1.65rem;text-align:center;box-shadow:0 4px 18px rgba(196,92,130,.11);min-width:125px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--magenta);font-weight:700;}
+.stat-label{font-size:.72rem;color:var(--muted);margin-top:.18rem;line-height:1.4;}
+.student-strip{background:var(--charcoal);color:rgba(255,255,255,.88);display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:1.6rem 5vw;flex-wrap:wrap;text-align:center;}
+.student-strip h3{font-family:'Playfair Display',serif;color:var(--rose);font-size:1.22rem;}
+.student-strip p{font-size:.84rem;line-height:1.65;max-width:560px;opacity:.82;}
+.home-about-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.4rem;}
+.home-about-card{background:var(--petal);border-radius:16px;padding:1.55rem;text-align:center;}
+.hac-icon{width:46px;height:46px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-size:1.2rem;}
+.home-about-card h4{font-family:'Playfair Display',serif;font-size:.97rem;color:var(--charcoal);margin-bottom:.38rem;}
+.home-about-card p{font-size:.79rem;color:var(--muted);line-height:1.6;}
+.impact-strip{background:linear-gradient(135deg,var(--magenta),var(--deep));padding:3.5rem 5vw;text-align:center;color:white;}
+.impact-strip p.tag{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:.85rem;}
+.impact-nums{display:flex;gap:2.2rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;}
+.impact-num .in{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;}
+.impact-num .il{font-size:.73rem;opacity:.72;margin-top:.18rem;}
+
+/* ABOUT */
+#about{background:var(--white);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.8rem;align-items:start;}@media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:2rem;}}
+.about-img-main{width:100%;min-height:340px;border-radius:24px 24px 80px 24px;background:linear-gradient(135deg,var(--blush),var(--accent));display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.about-float-card{position:absolute;bottom:-18px;right:-18px;background:var(--magenta);color:#fff;border-radius:15px;padding:1.05rem 1.35rem;max-width:188px;box-shadow:0 8px 26px rgba(168,48,96,.35);}
+.about-float-card p{font-size:.73rem;opacity:.85;margin-top:.28rem;line-height:1.4;}
+.mission-card{background:var(--petal);border-radius:17px;padding:1.7rem;margin-bottom:1.2rem;border-left:4px solid var(--rose);}
+.mission-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--magenta);margin-bottom:.45rem;}
+.mission-card p{font-size:.9rem;color:var(--muted);line-height:1.72;}
+.stat-highlight{background:linear-gradient(135deg,var(--magenta),var(--deep));color:white;border-radius:17px;padding:1.75rem;margin-top:1.2rem;}
+.stat-highlight h3{font-family:'Playfair Display',serif;font-size:1.65rem;margin-bottom:.38rem;}
+.stat-highlight p{font-size:.87rem;opacity:.85;line-height:1.65;}
+.stat-source{font-size:.46rem;opacity:.52;margin-top:.65rem;font-style:italic;}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1.3rem;margin-top:.9rem;}
+.val-card{background:var(--petal);border-radius:15px;padding:1.5rem;text-align:center;}
+.val-card .vi{width:44px;height:44px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;margin:0 auto .7rem;font-size:1.15rem;}
+.val-card h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--charcoal);margin-bottom:.35rem;}
+.val-card p{font-size:.78rem;color:var(--muted);line-height:1.6;}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;align-items:start;margin-top:4.5rem;}@media(max-width:760px){.story-grid{grid-template-columns:1fr;}}
+.timeline{position:relative;padding-left:1.8rem;margin-top:1.3rem;}
+.timeline::before{content:'';position:absolute;left:.45rem;top:0;bottom:0;width:2px;background:linear-gradient(var(--rose),var(--accent));}
+.tl-item{position:relative;padding-left:1.4rem;margin-bottom:1.65rem;}
+.tl-item::before{content:'';position:absolute;left:-.28rem;top:.38rem;width:11px;height:11px;border-radius:50%;background:var(--magenta);border:2px solid var(--white);box-shadow:0 0 0 2px var(--rose);}
+.tl-year{font-size:.68rem;font-weight:700;letter-spacing:.1em;color:var(--rose);margin-bottom:.08rem;}
+.tl-item h4{font-family:'Playfair Display',serif;font-size:.97rem;color:var(--magenta);}
+.tl-item p{font-size:.81rem;color:var(--muted);margin-top:.18rem;line-height:1.6;}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:1.3rem;margin-top:.9rem;}
+.team-card{background:var(--white);border:1.5px solid var(--accent);border-radius:16px;padding:1.4rem .95rem;text-align:center;transition:transform .2s,box-shadow .2s;}
+.team-card:hover{transform:translateY(-3px);box-shadow:0 7px 22px rgba(196,92,130,.12);}
+.team-avatar{width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,var(--blush),var(--accent));margin:0 auto .75rem;display:flex;align-items:center;justify-content:center;font-size:1.7rem;}
+.team-card h4{font-family:'Playfair Display',serif;font-size:.92rem;color:var(--charcoal);}
+.team-card p{font-size:.72rem;color:var(--deep);font-weight:600;margin-top:.18rem;}
+.team-card span{font-size:.7rem;color:var(--muted);display:block;margin-top:.28rem;line-height:1.4;}
+
+/* BLOG */
+#blog{background:var(--petal);}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:1.7rem;margin-bottom:2.8rem;}
+.blog-card{background:var(--white);border-radius:17px;overflow:hidden;box-shadow:0 2px 10px rgba(196,92,130,.07);transition:transform .25s,box-shadow .25s;}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(196,92,130,.14);}
+.blog-card-img{width:100%;height:185px;background:linear-gradient(135deg,var(--blush),var(--accent));display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.blog-card-img img{width:100%;height:100%;object-fit:cover;}
+.blog-card-body{padding:1.25rem;}
+.blog-tag-pill{font-size:.67rem;letter-spacing:.09em;text-transform:uppercase;background:var(--blush);color:var(--deep);padding:.2rem .62rem;border-radius:20px;font-weight:600;display:inline-block;margin-bottom:.55rem;}
+.blog-card-body h3{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--charcoal);margin-bottom:.42rem;line-height:1.3;}
+.blog-card-body p{font-size:.8rem;color:var(--muted);line-height:1.6;}
+.blog-card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:.85rem;}
+.blog-date{font-size:.7rem;color:var(--muted);}
+.blog-read{font-size:.76rem;color:var(--magenta);font-weight:600;cursor:pointer;}
+.blog-editor{background:var(--white);border-radius:20px;padding:2rem;box-shadow:0 4px 16px rgba(196,92,130,.09);margin-top:1.8rem;}
+.blog-editor h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--magenta);margin-bottom:1.2rem;}
+
+/* GIVE BACK */
+#giveback{background:var(--white);}
+.giveback-hero{background:linear-gradient(135deg,var(--blush),var(--petal));border-radius:24px;padding:2.6rem;text-align:center;margin-bottom:2.5rem;}
+.giveback-hero h2{font-family:'Playfair Display',serif;font-size:1.85rem;color:var(--magenta);margin-bottom:.65rem;}
+.giveback-hero p{color:var(--muted);max-width:510px;margin:0 auto 1.3rem;line-height:1.7;}
+.gofundme-box{background:white;border:2.5px dashed var(--rose);border-radius:17px;padding:2.2rem;text-align:center;margin-bottom:2.2rem;}
+.gofundme-box h3{font-family:'Playfair Display',serif;color:var(--deep);font-size:1.3rem;margin-bottom:.5rem;}
+.gofundme-box p{color:var(--muted);font-size:.87rem;margin-bottom:.95rem;}
+.gofundme-note{font-size:.66rem;color:var(--rose);font-style:italic;border-top:1px dashed var(--accent);padding-top:.7rem;margin-top:.7rem;}
+.ways-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.3rem;margin-bottom:2.6rem;}
+.way-card{background:var(--petal);border-radius:15px;padding:1.6rem;text-align:center;transition:transform .2s;}.way-card:hover{transform:translateY(-3px);}
+.way-card .wi{font-size:1.9rem;margin-bottom:.85rem;}
+.way-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--charcoal);margin-bottom:.38rem;}
+.way-card p{font-size:.79rem;color:var(--muted);line-height:1.6;}
+.vol-section{background:linear-gradient(135deg,var(--magenta),var(--deep));border-radius:24px;padding:2.6rem;color:white;}
+.vol-section h2{font-family:'Playfair Display',serif;font-size:1.7rem;margin-bottom:.4rem;}
+.vol-section>p{opacity:.85;margin-bottom:1.7rem;line-height:1.65;}
+.vol-section .form-group label{color:rgba(255,255,255,.9);}
+.vol-section .form-group input,.vol-section .form-group select,.vol-section .form-group textarea{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28);color:white;}
+.vol-section .form-group input::placeholder,.vol-section .form-group textarea::placeholder{color:rgba(255,255,255,.46);}
+.vol-section .form-group input:focus,.vol-section .form-group textarea:focus{border-color:rgba(255,255,255,.68);}
+
+/* ANATOMY */
+#anatomy{background:var(--white);}
+.anat-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;align-items:start;}@media(max-width:760px){.anat-layout{grid-template-columns:1fr;}}
+.diagram-wrap{max-width:370px;margin:0 auto;}
+.breast-zone{cursor:pointer;transition:opacity .2s;}
+.zone-nav{display:flex;flex-wrap:wrap;gap:.48rem;margin-top:1.3rem;}
+.zone-btn{padding:.36rem .82rem;border-radius:20px;border:1.5px solid var(--accent);background:white;color:var(--charcoal);font-size:.73rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.zone-btn:hover,.zone-btn.zactive{background:var(--magenta);color:white;border-color:var(--magenta);}
+.anat-panel{background:var(--petal);border-radius:20px;padding:1.85rem;min-height:280px;}
+.anat-panel .zone-lbl{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);font-weight:700;margin-bottom:.45rem;}
+.anat-panel h3{font-family:'Playfair Display',serif;font-size:1.28rem;color:var(--magenta);margin-bottom:.75rem;}
+.anat-illus{width:100%;border-radius:13px;margin:.75rem 0;overflow:hidden;}
+.anat-desc{font-size:.84rem;color:var(--muted);line-height:1.73;}
+.anat-warn{font-size:.77rem;background:white;border-left:3px solid var(--rose);padding:.65rem .95rem;border-radius:0 10px 10px 0;margin-top:.85rem;color:var(--charcoal);display:none;}
+.anat-warn strong{color:var(--magenta);}
+.anat-disclaimer{margin-top:1.3rem;font-size:.68rem;color:var(--muted);text-align:center;line-height:1.65;background:var(--petal);border-radius:11px;padding:.9rem;}
+
+/* AI CHAT */
+#ai-chat{background:var(--petal);}
+.chat-box{background:white;border-radius:24px;box-shadow:0 7px 32px rgba(196,92,130,.11);overflow:hidden;max-width:740px;margin:0 auto;}
+.chat-hdr{background:linear-gradient(135deg,var(--magenta),var(--deep));padding:1.35rem 1.75rem;color:white;display:flex;align-items:center;gap:.95rem;}
+.chat-hdr-av{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.chat-hdr h3{font-family:'Playfair Display',serif;font-size:1.08rem;}
+.chat-hdr p{font-size:.72rem;opacity:.8;margin-top:.08rem;}
+.odot{width:7px;height:7px;border-radius:50%;background:#7effa5;display:inline-block;margin-right:4px;}
+.chat-msgs{padding:1.3rem;height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:.9rem;background:var(--petal);}
+.chat-msgs::-webkit-scrollbar{width:4px;}.chat-msgs::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px;}
+.msg{max-width:76%;display:flex;flex-direction:column;gap:.26rem;}
+.msg.bot{align-self:flex-start;}.msg.user{align-self:flex-end;}
+.msg-bubble{padding:.8rem 1rem;border-radius:17px;font-size:.85rem;line-height:1.62;}
+.msg.bot .msg-bubble{background:white;color:var(--charcoal);border-bottom-left-radius:4px;box-shadow:0 2px 7px rgba(0,0,0,.05);}
+.msg.user .msg-bubble{background:var(--magenta);color:white;border-bottom-right-radius:4px;}
+.msg-time{font-size:.64rem;color:var(--muted);padding:0 .28rem;}.msg.user .msg-time{text-align:right;}
+.tdots{display:flex;gap:4px;align-items:center;padding:.8rem 1rem;}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:bn 1.2s infinite;}
+.tdot:nth-child(2){animation-delay:.2s;}.tdot:nth-child(3){animation-delay:.4s;}
+@keyframes bn{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
+.chat-topics{display:flex;flex-wrap:wrap;gap:.5rem;padding:.7rem 1.05rem;background:white;border-top:1px solid var(--accent);}
+.tchip{padding:.36rem .8rem;border-radius:20px;background:var(--blush);color:var(--deep);font-size:.71rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:background .2s;}.tchip:hover{background:var(--accent);}
+.chat-input-row{display:flex;gap:.7rem;padding:1.05rem;background:white;border-top:1px solid var(--accent);}
+.chat-input-row input{flex:1;padding:.7rem 1rem;border:1.5px solid var(--accent);border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.84rem;outline:none;transition:border .2s;background:var(--petal);color:var(--charcoal);}
+.chat-input-row input:focus{border-color:var(--rose);background:white;}
+.csend{background:var(--magenta);color:white;border:none;border-radius:50px;padding:.7rem 1.3rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:600;transition:background .2s,transform .15s;}
+.csend:hover{background:var(--deep);transform:scale(1.04);}.csend:disabled{background:var(--accent);cursor:not-allowed;transform:none;}
+.ai-disc{margin-top:1.35rem;text-align:center;font-size:.69rem;color:var(--muted);padding:0 1rem;line-height:1.7;}.ai-disc strong{color:var(--deep);}
+
+/* ARTICLE MODAL */
+.article-overlay{position:fixed;inset:0;background:rgba(30,10,20,.72);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;backdrop-filter:blur(6px);}
+.article-overlay.open{display:flex;}
+.article-modal{background:var(--white);border-radius:24px;max-width:720px;width:100%;margin:auto;overflow:hidden;box-shadow:0 24px 80px rgba(168,48,96,.22);animation:modalIn .35s cubic-bezier(.4,0,.2,1);}
+@keyframes modalIn{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+.article-hero{width:100%;height:240px;object-fit:cover;display:block;}
+.article-hero-bg{width:100%;height:240px;display:flex;align-items:center;justify-content:center;}
+.article-body{padding:2.4rem 2.6rem 2.8rem;}
+.article-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem;flex-wrap:wrap;}
+.article-tag{font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;background:var(--blush);color:var(--deep);padding:.22rem .65rem;border-radius:20px;font-weight:700;}
+.article-date{font-size:.72rem;color:var(--muted);}
+.article-author{font-size:.72rem;color:var(--muted);}
+.article-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--charcoal);line-height:1.18;margin-bottom:1.5rem;}
+.article-content p{font-size:.95rem;color:#4a3540;line-height:1.85;margin-bottom:1.3rem;}
+.article-content h4{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--magenta);margin:1.8rem 0 .6rem;}
+.article-content blockquote{border-left:3px solid var(--rose);padding:.6rem 1.2rem;margin:1.4rem 0;background:var(--petal);border-radius:0 10px 10px 0;}
+.article-content blockquote p{font-style:italic;color:var(--charcoal);margin-bottom:0;font-size:.92rem;}
+.article-close-bar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.6rem;border-top:1px solid var(--accent);background:var(--petal);}
+.article-close-btn{background:var(--magenta);color:white;border:none;border-radius:50px;padding:.55rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:background .2s;}
+.article-close-btn:hover{background:var(--deep);}
+@media(max-width:600px){.article-body{padding:1.5rem 1.3rem 2rem;}.article-overlay{padding:.5rem;}}
+
+/* ═══════════════════════════════════════
+   REDESIGNED FOOTER
+═══════════════════════════════════════ */
+.site-footer {
+  background: var(--charcoal);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose), var(--magenta), var(--deep), var(--rose));
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.footer-main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4rem 5vw 2.5rem;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand .fl {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.65rem;
+  color: var(--rose);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: .6rem;
+  letter-spacing: -0.5px;
+}
+
+.footer-brand .fl span {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.footer-tagline {
+  font-size: .82rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.75;
+  margin-bottom: 1.3rem;
+  max-width: 260px;
+}
+
+.footer-tagline em {
+  color: var(--rose);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.footer-ribbon {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(232,160,180,.2);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  width: fit-content;
+}
+
+.footer-ribbon-icon {
+  font-size: 1.1rem;
+}
+
+.footer-ribbon-text {
+  font-size: .7rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.4;
+}
+
+.footer-ribbon-text strong {
+  color: var(--rose);
+  display: block;
+  font-size: .73rem;
+}
+
+.footer-col h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: .9rem;
+  color: var(--rose);
+  margin-bottom: 1.1rem;
+  letter-spacing: .02em;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .62rem;
+}
+
+.footer-col ul li a,
+.footer-col ul li span {
+  font-size: .8rem;
+  color: rgba(255,255,255,.52);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .2s;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.footer-col ul li a:hover {
+  color: var(--rose);
+}
+
+.footer-col ul li a::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--deep);
+  flex-shrink: 0;
+  transition: background .2s;
+}
+
+.footer-col ul li a:hover::before {
+  background: var(--rose);
+}
+
+.footer-contact-link {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  background: rgba(232,160,180,.1);
+  border: 1px solid rgba(232,160,180,.18);
+  border-radius: 10px;
+  padding: .75rem 1rem;
+  margin-top: .4rem;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+
+.footer-contact-link:hover {
+  background: rgba(232,160,180,.18);
+  border-color: rgba(232,160,180,.35);
+}
+
+.footer-contact-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--deep), var(--magenta));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .95rem;
+  flex-shrink: 0;
+}
+
+.footer-contact-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-contact-text span:first-child {
+  font-size: .67rem;
+  color: rgba(255,255,255,.42);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.footer-contact-text span:last-child {
+  font-size: .78rem;
+  color: var(--rose);
+  font-weight: 500;
+}
+
+.footer-divider {
+  max-width: 1080px;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.footer-bottom {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.4rem 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .8rem;
+}
+
+.footer-bottom-left {
+  font-size: .7rem;
+  color: rgba(255,255,255,.3);
+}
+
+.footer-badge {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  background: rgba(255,255,255,.05);
+  border-radius: 20px;
+  padding: .32rem .8rem;
+}
+
+.footer-badge span {
+  font-size: .65rem;
+  color: rgba(255,255,255,.38);
+  letter-spacing: .05em;
+}
+
+.footer-badge::before {
+  content: '♀';
+  color: var(--rose);
+  font-size: .75rem;
+}
+
+@media (max-width: 760px) {
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width:680px){.nav-badge{display:none;}.nav-links{gap:.8rem;}.nav-links a{font-size:.72rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showSection('home')">Pink <span>Powher</span><span class="nav-badge">Student Women-Led</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showSection('home')" class="active">Home</a></li>
+    <li><a onclick="showSection('about')">About Us</a></li>
+    <li><a onclick="showSection('blog')">Blog</a></li>
+    <li><a onclick="showSection('giveback')">Give Back</a></li>
+    <li><a onclick="showSection('anatomy')">Know Your Body</a></li>
+    <li><a onclick="showSection('ai-chat')">Ask Our AI</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="hero-wrap">
+    <p class="hero-eyebrow fade-in">Student Women-Led Nonprofit &nbsp;&middot;&nbsp; Together We Rise</p>
+    <h1 class="hero-title fade-in" style="animation-delay:.1s">Strength in<br><em>Every Pink</em></h1>
+    <p class="hero-sub fade-in" style="animation-delay:.2s">Pink Powher is a student-founded, women-led nonprofit raising funds for those affected by breast cancer and spreading life-saving awareness about the importance of early screenings.</p>
+    <div class="hero-btns fade-in" style="animation-delay:.3s">
+      <button class="btn btn-primary" onclick="showSection('giveback')">Give Back</button>
+      <button class="btn btn-outline" onclick="showSection('about')">Our Mission</button>
+    </div>
+    <div class="hero-stats fade-in" style="animation-delay:.4s">
+      <div class="stat-box"><div class="stat-num">1 in 8</div><div class="stat-label">Women diagnosed<br>in their lifetime</div></div>
+      <div class="stat-box"><div class="stat-num">99%</div><div class="stat-label">5-year survival rate<br>when caught early</div></div>
+      <div class="stat-box"><div class="stat-num">3.8M</div><div class="stat-label">Survivors in the<br>U.S. today</div></div>
+    </div>
+  </div>
+
+  <div class="student-strip">
+    <div>
+      <h3>Proudly Student Women-Led</h3>
+      <p>Pink Powher was born in the classroom and built on the belief that young women have the power to change communities. We are students who refuse to stay silent — channeling passion into action, one ribbon at a time.</p>
+    </div>
+  </div>
+
+  <div style="background:var(--petal);padding:5rem 5vw;">
+    <div style="max-width:1040px;margin:0 auto;">
+      <p class="section-tag fade-in" style="text-align:center;">Who We Are</p>
+      <h2 class="section-title fade-in" style="text-align:center;">More than a nonprofit &mdash; <em>a movement</em></h2>
+      <div class="divider fade-in" style="margin:0 auto 1.5rem;"></div>
+      <p class="fade-in" style="text-align:center;color:var(--muted);font-size:.98rem;max-width:680px;margin:0 auto 2.8rem;line-height:1.82;">We are a group of passionate young women who understand that awareness without action means nothing. Pink Powher bridges education, community support, and tangible change — raising funds and voices for breast cancer patients across our communities.</p>
+      <div class="home-about-grid">
+        <div class="home-about-card fade-in"><div class="hac-icon">&#9825;</div><h4>Our Purpose</h4><p>To fund treatment support and recovery services for those living with breast cancer, especially those with limited access to care.</p></div>
+        <div class="home-about-card fade-in" style="animation-delay:.1s"><div class="hac-icon">&#128269;</div><h4>Awareness First</h4><p>We believe informed communities save lives. Our campaigns educate on risk factors, self-exams, and the critical importance of early screening.</p></div>
+        <div class="home-about-card fade-in" style="animation-delay:.2s"><div class="hac-icon">&#127891;</div><h4>Student Power</h4><p>Founded and run by college women who believe young people can reshape how we fight disease — with empathy and urgency.</p></div>
+        <div class="home-about-card fade-in" style="animation-delay:.3s"><div class="hac-icon">&#127968;</div><h4>Community Roots</h4><p>We show up locally — at events, clinics, and schools — bringing the message of prevention and support to those who need it most.</p></div>
+      </div>
+      <div style="margin-top:3.5rem;background:white;border-radius:22px;padding:2.5rem;box-shadow:0 4px 18px rgba(196,92,130,.08);" class="fade-in">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;">
+          <div>
+            <p class="section-tag">Our Commitment</p>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--charcoal);line-height:1.2;margin-bottom:1rem;">Every dollar goes toward <em style="color:var(--magenta);font-style:italic;">people, not overhead</em></h3>
+            <p style="font-size:.88rem;color:var(--muted);line-height:1.76;margin-bottom:1rem;">Pink Powher operates with complete financial transparency. As a student-run nonprofit, we keep administrative costs at zero — every dollar raised goes directly to patient support, awareness programs, and community outreach.</p>
+            <p style="font-size:.88rem;color:var(--muted);line-height:1.76;">We are committed to centering the voices of survivors, advocates, and medical professionals in everything we do.</p>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--blush),var(--petal));border-radius:18px;padding:2rem;">
+            <p style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);margin-bottom:1rem;">What we fund</p>
+            <div style="display:flex;flex-direction:column;gap:.8rem;">
+              <div style="display:flex;align-items:center;gap:.8rem;"><div style="width:8px;height:8px;border-radius:50%;background:var(--magenta);flex-shrink:0;"></div><span style="font-size:.86rem;color:var(--charcoal);">Treatment co-pay assistance for patients</span></div>
+              <div style="display:flex;align-items:center;gap:.8rem;"><div style="width:8px;height:8px;border-radius:50%;background:var(--magenta);flex-shrink:0;"></div><span style="font-size:.86rem;color:var(--charcoal);">Free mammogram access programs</span></div>
+              <div style="display:flex;align-items:center;gap:.8rem;"><div style="width:8px;height:8px;border-radius:50%;background:var(--magenta);flex-shrink:0;"></div><span style="font-size:.86rem;color:var(--charcoal);">Community education and awareness kits</span></div>
+              <div style="display:flex;align-items:center;gap:.8rem;"><div style="width:8px;height:8px;border-radius:50%;background:var(--magenta);flex-shrink:0;"></div><span style="font-size:.86rem;color:var(--charcoal);">Mental health support for survivors</span></div>
+              <div style="display:flex;align-items:center;gap:.8rem;"><div style="width:8px;height:8px;border-radius:50%;background:var(--magenta);flex-shrink:0;"></div><span style="font-size:.86rem;color:var(--charcoal);">Transportation to medical appointments</span></div>
+              <div style="display:flex;align-items:center;gap:.8rem;"><div style="width:8px;height:8px;border-radius:50%;background:var(--magenta);flex-shrink:0;"></div><span style="font-size:.86rem;color:var(--charcoal);">School and campus outreach events</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--magenta),var(--deep));padding:3.2rem 5vw;text-align:center;color:white;">
+    <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:.6rem;">Join the Movement</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.8rem;">Together, we can change outcomes.</h2>
+    <p style="font-size:.88rem;opacity:.82;max-width:480px;margin:0 auto 1.5rem;line-height:1.7;">Every donation, every share, every conversation brings us closer to a world where no woman faces breast cancer alone.</p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://gofund.me/a456eb25f" target="_blank" rel="noopener" style="padding:.72rem 1.7rem;background:white;color:var(--magenta);border-radius:50px;font-weight:700;font-size:.86rem;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;">Donate Now</a>
+      <button onclick="showSection('giveback')" style="padding:.72rem 1.7rem;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:50px;font-weight:600;font-size:.86rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Get Involved</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div style="position:relative;" class="fade-in">
+        <div class="about-img-main" style="min-height:350px;">
+          <svg viewBox="0 0 310 390" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+            <defs>
+              <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f9e4ec"/>
+                <stop offset="100%" style="stop-color:#f4c2d4"/>
+              </linearGradient>
+            </defs>
+            <!-- Background -->
+            <rect width="310" height="390" fill="url(#bg1)" rx="20"/>
+            <!-- Head: large circle -->
+            <circle cx="155" cy="128" r="76" fill="#e8a0b4" opacity=".72"/>
+            <!-- Inner shading circle -->
+            <circle cx="155" cy="138" r="52" fill="#c45c82" opacity=".38"/>
+            <!-- Heart left lobe -->
+            <path d="M155 92 C155 92 130 73 122 87 C114 101 130 116 155 133 C180 116 196 101 188 87 C180 73 155 92 155 92Z" fill="#a83060" opacity=".88"/>
+            <!-- Ribbon triangle drop -->
+            <polygon points="155,133 149,150 161,150" fill="#a83060" opacity=".88"/>
+            <!-- Body: tall rounded rectangle -->
+            <rect x="100" y="222" width="110" height="122" rx="34" fill="#e8a0b4" opacity=".68"/>
+            <!-- Text -->
+            <text x="155" y="360" text-anchor="middle" font-family="Playfair Display" font-size="13" fill="#a83060" opacity=".85">Pink Powher</text>
+            <text x="155" y="378" text-anchor="middle" font-family="DM Sans" font-size="9.5" fill="#8a6070" opacity=".7">Student Women-Led Nonprofit</text>
+          </svg>
+        </div>
+        <div class="about-float-card">
+          <div style="font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;">Est. 2025</div>
+          <p>Fighting for survivors, one pink ribbon at a time.</p>
+        </div>
+
+        <!-- Stat highlight — single instance, enlarged -->
+        <div class="stat-highlight" style="margin-top:2.2rem;padding:2.2rem;">
+          <h3 style="font-size:2rem;">99% vs 28%</h3>
+          <p style="font-size:.95rem;line-height:1.8;margin-top:.5rem;">The 5-year survival rate for localized (early-stage) breast cancer is <strong>99%</strong>. For distant (late-stage) cancer, that drops to just <strong>28%</strong>. Early screening is not just important — it is life-saving.</p>
+          <div class="stat-source">Source: American Cancer Society — Cancer Facts &amp; Figures 2023; Surveillance, Epidemiology, and End Results (SEER) Program, National Cancer Institute.</div>
+        </div>
+
+        <!-- Early Detection card — single instance, enlarged -->
+        <div class="mission-card" style="margin-top:1.2rem;padding:2rem;">
+          <h3 style="font-size:1.2rem;">Early Detection Awareness</h3>
+          <p style="font-size:.95rem;line-height:1.8;margin-top:.35rem;">Through community events, educational campaigns, and partnerships with healthcare providers, we encourage everyone to prioritize regular screenings — because when we catch it early, we win. Early detection is the single most powerful tool in the fight against breast cancer.</p>
+        </div>
+      </div>
+      <div class="fade-in" style="animation-delay:.15s">
+        <p class="section-tag">Who We Are</p>
+        <h2 class="section-title">Raising <em>voices</em> &amp; raising <em>hope</em></h2>
+        <div class="divider"></div>
+        <div class="mission-card"><h3>Our Mission</h3><p>Pink Powher exists to raise vital funds for individuals battling breast cancer — covering treatment costs, support services, and recovery care — while championing the life-saving message that early detection changes everything.</p></div>
+        <div class="mission-card"><h3>Student Women-Led</h3><p>We are a nonprofit founded and run entirely by college women. We believe the passion of the next generation — channeled through education, advocacy, and community — can transform how society addresses breast cancer.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:4.5rem;">
+      <p class="section-tag fade-in">Our Values</p>
+      <h2 class="section-title fade-in">What drives us every day</h2>
+      <div class="divider fade-in"></div>
+      <div class="values-grid">
+        <div class="val-card fade-in"><div class="vi">&#128156;</div><h4>Compassion</h4><p>Every story matters. We show up with empathy for every person we serve.</p></div>
+        <div class="val-card fade-in" style="animation-delay:.1s"><div class="vi">&#128227;</div><h4>Advocacy</h4><p>We speak loudly for those who need it most and push for systemic change.</p></div>
+        <div class="val-card fade-in" style="animation-delay:.2s"><div class="vi">&#128270;</div><h4>Education</h4><p>We spread accurate, accessible information that empowers communities.</p></div>
+        <div class="val-card fade-in" style="animation-delay:.3s"><div class="vi">&#129309;</div><h4>Community</h4><p>No one should fight alone. We build networks of survivors and supporters.</p></div>
+        <div class="val-card fade-in" style="animation-delay:.4s"><div class="vi">&#127891;</div><h4>Student Energy</h4><p>Young women determined to make a difference bring unmatched creativity and drive.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:4.5rem;">
+      <div class="fade-in">
+        <div style="background:linear-gradient(135deg,var(--blush),var(--petal));border-radius:20px;padding:2.3rem;">
+          <p class="section-tag">Meet the Team</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--charcoal);margin-bottom:.45rem;">Led by <em style="color:var(--magenta);font-style:italic;">women</em>, for everyone</h3>
+          <p style="font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:1.3rem;">Our leadership team is made up of college students united by a shared mission to fight breast cancer in our communities.</p>
+          <div class="team-grid">
+            <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#e8a0b4,#f4c2d4);">&#128105;</div><h4>Founder &amp; President</h4><p>Pink Powher</p><span>Vision, strategy &amp; community leadership</span></div>
+            <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#fde8d8,#e8a0b4);">&#128105;</div><h4>Outreach Director</h4><p>Pink Powher</p><span>Community partnerships &amp; events</span></div>
+            <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#f9e4ec,#f4c2d4);">&#128105;</div><h4>Communications</h4><p>Pink Powher</p><span>Social media &amp; public awareness</span></div>
+            <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#c45c82,#e8a0b4);">&#128105;</div><h4>Fundraising Lead</h4><p>Pink Powher</p><span>Donor relations &amp; campaigns</span></div>
+          </div>
+          <p style="font-size:.71rem;color:var(--muted);margin-top:1.1rem;text-align:center;">Interested in joining? <a href="#" onclick="showSection('giveback')" style="color:var(--magenta);font-weight:600;">Volunteer with us</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instagram social link -->
+    <div class="fade-in" style="text-align:center;margin:2.5rem 0 .5rem;">
+      <p style="font-size:.78rem;color:var(--muted);margin-bottom:.85rem;letter-spacing:.04em;">Stay connected with our community</p>
+      <a href="https://www.instagram.com/powherpink?igsh=emt3N3g4Y3VmM2c2&utm_source=qr" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:.7rem;background:linear-gradient(135deg,#f9e4ec,#fdf0f5);border:1.5px solid var(--accent);border-radius:50px;padding:.75rem 1.6rem;text-decoration:none;transition:all .25s;box-shadow:0 3px 12px rgba(196,92,130,.1);"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 22px rgba(168,48,96,.18)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 3px 12px rgba(196,92,130,.1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a83060" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:.86rem;color:var(--magenta);">Follow us on Instagram</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.76rem;color:var(--muted);">@powherpink</span>
+      </a>
+    </div>
+
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--magenta),var(--deep));padding:3.2rem 5vw;text-align:center;color:white;">
+    <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:.6rem;">Join the Movement</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.8rem;">Together, we can change outcomes.</h2>
+    <p style="font-size:.88rem;opacity:.82;max-width:480px;margin:0 auto 1.5rem;line-height:1.7;">Every donation, every share, every conversation brings us closer to a world where no woman faces breast cancer alone.</p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://gofund.me/a456eb25f" target="_blank" rel="noopener" style="padding:.72rem 1.7rem;background:white;color:var(--magenta);border-radius:50px;font-weight:700;font-size:.86rem;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;">Donate Now</a>
+      <button onclick="showSection('giveback')" style="padding:.72rem 1.7rem;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:50px;font-weight:600;font-size:.86rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Get Involved</button>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-inner">
+    <p class="section-tag fade-in">Stories &amp; Updates</p>
+    <h2 class="section-title fade-in">Our <em>Blog</em></h2>
+    <div class="divider fade-in"></div>
+    <div class="blog-grid" id="blogGrid">
+      <div class="blog-card fade-in" onclick="openArticle('gabriela')" style="cursor:pointer;">
+        <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&q=80" alt="" onerror="this.style.display='none'"/></div>
+        <div class="blog-card-body">
+          <span class="blog-tag-pill">Survivor Stories</span>
+          <h3>She Was 29 When They Found It — And She Wants You to Know Her Story</h3>
+          <p>When Gabriela went in for what she thought was a routine check, she never expected to hear the words "stage two." Now in remission, she's sharing everything — the fear, the chemo, the wigs, and the moment she realized she wasn't alone.</p>
+          <div class="blog-card-footer"><span class="blog-date">March 2026</span><span class="blog-read">Read More →</span></div>
+        </div>
+      </div>
+      <div class="blog-card fade-in" style="animation-delay:.1s;cursor:pointer;" onclick="openArticle('selfexam')">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,var(--blush),var(--accent));"></div>
+        <div class="blog-card-body">
+          <span class="blog-tag-pill">Early Detection</span>
+          <h3>The Self-Exam That Changed Everything: What Doctors Want Every Woman to Know</h3>
+          <p>A simple monthly self-exam takes under five minutes — and it's one of the most powerful tools you have. We break down exactly how to do it, what to feel for, and when to call your doctor. No medical background needed.</p>
+          <div class="blog-card-footer"><span class="blog-date">February 2026</span><span class="blog-read">Read More →</span></div>
+        </div>
+      </div>
+      <div class="blog-card fade-in" style="animation-delay:.2s;cursor:pointer;" onclick="openArticle('aftertreatment')">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,var(--accent),var(--deep));"></div>
+        <div class="blog-card-body">
+          <span class="blog-tag-pill">Wellness</span>
+          <h3>Life After Treatment: The Things Nobody Talks About</h3>
+          <p>Finishing chemo doesn't mean the hard part is over. Survivors describe fatigue, emotional swings, and a strange kind of grief for the person they were before. We spoke with three women about what recovery really looks like — and how community made all the difference.</p>
+          <div class="blog-card-footer"><span class="blog-date">December 2025</span><span class="blog-read">Read More →</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="blog-editor fade-in">
+      <h2>Add a New Blog Post</h2>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.3rem;">Fill out the form below to publish a new post to the blog.</p>
+      <div class="form-row"><div class="form-group"><label>Post Title *</label><input id="blogTitle" type="text" placeholder="Enter a compelling headline…"/></div><div class="form-group"><label>Category</label><select id="blogCat"><option>Early Detection</option><option>Survivor Stories</option><option>Wellness</option><option>Community Events</option><option>Research &amp; News</option><option>Fundraising</option></select></div></div>
+      <div class="form-group"><label>Short Preview</label><textarea id="blogPreview" placeholder="1-2 sentence description…" style="min-height:62px;"></textarea></div>
+      <div class="form-group"><label>Full Post Content</label><textarea id="blogContent" placeholder="Write your full blog post here…"></textarea></div>
+      <div class="form-row"><div class="form-group"><label>Author Name</label><input id="blogAuthor" type="text" placeholder="Pink Powher Team"/></div><div class="form-group"><label>Image URL (optional)</label><input id="blogImg" type="text" placeholder="https://…"/></div></div>
+      <button class="btn btn-primary" onclick="publishPost()">Publish Post</button>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--magenta),var(--deep));padding:3.2rem 5vw;text-align:center;color:white;">
+    <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:.6rem;">Join the Movement</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.8rem;">Together, we can change outcomes.</h2>
+    <p style="font-size:.88rem;opacity:.82;max-width:480px;margin:0 auto 1.5rem;line-height:1.7;">Every donation, every share, every conversation brings us closer to a world where no woman faces breast cancer alone.</p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://gofund.me/a456eb25f" target="_blank" rel="noopener" style="padding:.72rem 1.7rem;background:white;color:var(--magenta);border-radius:50px;font-weight:700;font-size:.86rem;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;">Donate Now</a>
+      <button onclick="showSection('giveback')" style="padding:.72rem 1.7rem;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:50px;font-weight:600;font-size:.86rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Get Involved</button>
+    </div>
+  </div>
+</section>
+
+<!-- GIVE BACK -->
+<section id="giveback">
+  <div class="section-inner">
+    <p class="section-tag fade-in">Make a Difference</p>
+    <h2 class="section-title fade-in">How to <em>Give Back</em></h2>
+    <div class="divider fade-in"></div>
+    <div class="giveback-hero fade-in"><h2>Your generosity changes lives.</h2><p>Every contribution — big or small — funds treatments, awareness campaigns, and community support for those affected by breast cancer.</p></div>
+    <div class="gofundme-box fade-in">
+      <h3>Donate via GoFundMe</h3>
+      <p>Your donations go directly toward supporting breast cancer patients and funding early detection programs in our community.</p>
+      <a class="btn btn-primary" href="https://gofund.me/a456eb25f" target="_blank" rel="noopener">Donate Now</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-bottom:2.6rem;">
+      <div class="way-card fade-in" style="min-height:220px;display:flex;flex-direction:column;justify-content:center;padding:2.2rem 2rem;">
+        <div class="wi" style="font-size:2.4rem;margin-bottom:1rem;">&#128226;</div>
+        <h3 style="font-size:1.15rem;margin-bottom:.6rem;">Spread the Word</h3>
+        <p style="font-size:.86rem;line-height:1.72;">Share our mission on social media and help us reach more people who need support. Tag us, share our posts, and start conversations in your community — because awareness truly saves lives. Every share matters.</p>
+      </div>
+      <div class="way-card fade-in" style="animation-delay:.1s;min-height:220px;display:flex;flex-direction:column;justify-content:center;padding:2.2rem 2rem;">
+        <div class="wi" style="font-size:2.4rem;margin-bottom:1rem;">&#129510;</div>
+        <h3 style="font-size:1.15rem;margin-bottom:.6rem;">Donation Drive</h3>
+        <p style="font-size:.86rem;line-height:1.72;">We're collecting <strong>socks and blankets</strong> for breast cancer patients in treatment. Drop off donations at any of our collection points — warmth and comfort go a long way during chemotherapy. Small gestures make a big difference.</p>
+      </div>
+    </div>
+    <div class="vol-section fade-in">
+      <h2>Volunteer With Us</h2>
+      <p>Our volunteers are the heart of Pink Powher. Sign up and we'll reach out with opportunities to get involved in events, outreach, and support programs near you.</p>
+      <div class="form-row"><div class="form-group"><label>First Name *</label><input type="text" id="volFirst" placeholder="Your first name"/></div><div class="form-group"><label>Last Name *</label><input type="text" id="volLast" placeholder="Your last name"/></div></div>
+      <div class="form-row"><div class="form-group"><label>Email Address *</label><input type="email" id="volEmail" placeholder="you@email.com"/></div><div class="form-group"><label>Phone Number</label><input type="tel" id="volPhone" placeholder="(555) 000-0000"/></div></div>
+      <div class="form-row"><div class="form-group"><label>City / State</label><input type="text" id="volCity" placeholder="e.g. Fort Lauderdale, FL"/></div><div class="form-group"><label>Availability</label><select id="volAvail"><option>Weekdays</option><option>Weekends</option><option>Both</option><option>Special Events Only</option></select></div></div>
+      <div class="form-group"><label>How would you like to help?</label><textarea id="volHow" placeholder="Tell us about your skills or interests…" style="min-height:82px;"></textarea></div>
+      <button class="btn btn-white" onclick="submitVolunteer()">Sign Me Up</button>
+    </div>
+
+    <!-- Instagram social link -->
+    <div class="fade-in" style="text-align:center;margin:2.5rem 0 .5rem;">
+      <p style="font-size:.78rem;color:var(--muted);margin-bottom:.85rem;letter-spacing:.04em;">Stay connected with our community</p>
+      <a href="https://www.instagram.com/powherpink?igsh=emt3N3g4Y3VmM2c2&utm_source=qr" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:.7rem;background:linear-gradient(135deg,#f9e4ec,#fdf0f5);border:1.5px solid var(--accent);border-radius:50px;padding:.75rem 1.6rem;text-decoration:none;transition:all .25s;box-shadow:0 3px 12px rgba(196,92,130,.1);"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 22px rgba(168,48,96,.18)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 3px 12px rgba(196,92,130,.1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a83060" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:.86rem;color:var(--magenta);">Follow us on Instagram</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.76rem;color:var(--muted);">@powherpink</span>
+      </a>
+    </div>
+
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--magenta),var(--deep));padding:3.2rem 5vw;text-align:center;color:white;">
+    <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:.6rem;">Join the Movement</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.8rem;">Together, we can change outcomes.</h2>
+    <p style="font-size:.88rem;opacity:.82;max-width:480px;margin:0 auto 1.5rem;line-height:1.7;">Every donation, every share, every conversation brings us closer to a world where no woman faces breast cancer alone.</p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://gofund.me/a456eb25f" target="_blank" rel="noopener" style="padding:.72rem 1.7rem;background:white;color:var(--magenta);border-radius:50px;font-weight:700;font-size:.86rem;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;">Donate Now</a>
+      <button onclick="showSection('giveback')" style="padding:.72rem 1.7rem;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:50px;font-weight:600;font-size:.86rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Get Involved</button>
+    </div>
+  </div>
+</section>
+
+<!-- KNOW YOUR BODY -->
+<section id="anatomy">
+  <div class="section-inner">
+    <p class="section-tag fade-in">Visual Education</p>
+    <h2 class="section-title fade-in">Know Your Body &mdash; <em>Know the Signs</em></h2>
+    <div class="divider fade-in"></div>
+    <p class="fade-in" style="color:var(--muted);max-width:640px;line-height:1.77;margin-bottom:2.3rem;font-size:.93rem;">Click on any region of the diagram below to learn what visual and physical changes to look for in that area. Early awareness of changes is one of the most powerful tools for early detection.</p>
+    <div class="anat-layout">
+      <div class="fade-in">
+        <p style="font-size:.72rem;color:var(--muted);margin-bottom:.9rem;text-align:center;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Click a region to explore</p>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 340 430" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skinG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#fde8d8"/><stop offset="100%" style="stop-color:#f5c9a5"/></linearGradient>
+              <linearGradient id="shirtG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f9e4ec"/><stop offset="100%" style="stop-color:#f4c2d4"/></linearGradient>
+              <radialGradient id="brG" cx="45%" cy="38%" r="65%"><stop offset="0%" style="stop-color:#fde8d8"/><stop offset="100%" style="stop-color:#f0b89a"/></radialGradient>
+            </defs>
+            <ellipse cx="170" cy="72" rx="42" ry="44" fill="#fde8d8"/>
+            <ellipse cx="170" cy="68" rx="28" ry="30" fill="#f5c9a5"/>
+            <ellipse cx="170" cy="55" rx="43" ry="24" fill="#7a4f3a" opacity=".72"/>
+            <ellipse cx="140" cy="72" rx="11" ry="27" fill="#7a4f3a" opacity=".68"/>
+            <ellipse cx="200" cy="72" rx="11" ry="27" fill="#7a4f3a" opacity=".68"/>
+            <rect x="158" y="114" width="24" height="22" fill="#fde8d8"/>
+            <path d="M82 140 Q107 130 158 136 L182 136 Q213 130 258 140 L266 202 Q238 212 200 218 L200 314 Q185 322 170 322 Q155 322 140 314 L140 218 Q102 212 74 202 Z" fill="url(#shirtG)"/>
+            <path d="M122 142 Q170 150 218 142" stroke="#e8a0b4" stroke-width="1.4" fill="none" opacity=".55"/>
+            <path d="M82 140 Q57 167 52 222 Q62 227 74 222 Q77 177 90 157Z" fill="url(#shirtG)"/>
+            <path d="M258 140 Q283 167 288 222 Q276 227 266 222 Q263 177 250 157Z" fill="url(#shirtG)"/>
+            <g class="breast-zone" onclick="showZone('upper')">
+              <rect x="90" y="150" width="160" height="30" rx="6" fill="rgba(168,48,96,.05)" stroke="#e8a0b4" stroke-width="1.2" stroke-dasharray="5,3"/>
+              <text x="170" y="169" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="600">UPPER REGION — tap to explore</text>
+            </g>
+            <g class="breast-zone" onclick="showZone('armpit')">
+              <ellipse cx="84" cy="178" rx="17" ry="21" fill="rgba(196,92,130,.07)" stroke="#e8a0b4" stroke-width="1.2" stroke-dasharray="4,3"/>
+              <text x="84" y="197" text-anchor="middle" font-family="DM Sans" font-size="7.2" fill="#a83060" font-weight="600">ARMPIT</text>
+              <ellipse cx="256" cy="178" rx="17" ry="21" fill="rgba(196,92,130,.07)" stroke="#e8a0b4" stroke-width="1.2" stroke-dasharray="4,3"/>
+              <text x="256" y="197" text-anchor="middle" font-family="DM Sans" font-size="7.2" fill="#a83060" font-weight="600">ARMPIT</text>
+            </g>
+            <g class="breast-zone" onclick="showZone('left')">
+              <ellipse cx="131" cy="200" rx="41" ry="37" fill="url(#brG)" opacity=".88"/>
+              <ellipse cx="131" cy="200" rx="41" ry="37" fill="none" stroke="#c45c82" stroke-width="1.6" opacity=".5"/>
+              <circle cx="125" cy="203" r="7" fill="#c45c82" opacity=".38"/>
+              <text x="131" y="240" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="600">LEFT</text>
+            </g>
+            <g class="breast-zone" onclick="showZone('right')">
+              <ellipse cx="209" cy="200" rx="41" ry="37" fill="url(#brG)" opacity=".88"/>
+              <ellipse cx="209" cy="200" rx="41" ry="37" fill="none" stroke="#c45c82" stroke-width="1.6" opacity=".5"/>
+              <circle cx="215" cy="203" r="7" fill="#c45c82" opacity=".38"/>
+              <text x="209" y="240" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="600">RIGHT</text>
+            </g>
+            <g class="breast-zone" onclick="showZone('nipple')">
+              <circle cx="125" cy="203" r="11" fill="none" stroke="#c45c82" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <circle cx="215" cy="203" r="11" fill="none" stroke="#c45c82" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <text x="170" y="257" text-anchor="middle" font-family="DM Sans" font-size="7.5" fill="#c45c82" opacity=".8">click circles for nipple signs</text>
+            </g>
+            <g class="breast-zone" onclick="showZone('skin')">
+              <text x="170" y="276" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#8a6070" opacity=".75" font-style="italic">tap here for skin change signs</text>
+            </g>
+            <rect x="82" y="290" width="176" height="42" rx="9" fill="white" opacity=".65"/>
+            <circle cx="102" cy="306" r="4.5" fill="#a83060" opacity=".65"/>
+            <text x="112" y="310" font-family="DM Sans" font-size="8" fill="#3a2530">All outlined areas are clickable</text>
+            <rect x="96" y="316" width="11" height="3" rx="1.5" fill="#e8a0b4"/>
+            <rect x="111" y="316" width="11" height="3" rx="1.5" fill="#c45c82" opacity=".5"/>
+            <text x="128" y="321" font-family="DM Sans" font-size="7.5" fill="#8a6070">Dashed = interactive zone</text>
+          </svg>
+        </div>
+        <div class="zone-nav">
+          <button class="zone-btn" onclick="showZone('left')">Left Breast</button>
+          <button class="zone-btn" onclick="showZone('right')">Right Breast</button>
+          <button class="zone-btn" onclick="showZone('upper')">Upper Region</button>
+          <button class="zone-btn" onclick="showZone('nipple')">Nipple Area</button>
+          <button class="zone-btn" onclick="showZone('armpit')">Underarm</button>
+          <button class="zone-btn" onclick="showZone('skin')">Skin Changes</button>
+        </div>
+      </div>
+      <div>
+        <div class="anat-panel" id="anatPanel">
+          <div class="zone-lbl" id="zoneLbl">Select a region</div>
+          <h3 id="zoneTitle">Click any area on the diagram</h3>
+          <div id="zoneIllus"></div>
+          <p class="anat-desc" id="zoneDesc">Select a region on the body diagram or use the buttons to learn what changes to look for in each area of the breast. Early awareness of visual and physical changes is one of the most powerful tools for early detection.</p>
+          <div class="anat-warn" id="zoneWarn"></div>
+        </div>
+        <div class="anat-disclaimer">
+          <strong>Educational purposes only.</strong> These AI-generated illustrations are for awareness education and do not constitute medical diagnosis or advice. If you notice any changes to your breasts, please consult a licensed healthcare provider promptly.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--magenta),var(--deep));padding:3.2rem 5vw;text-align:center;color:white;">
+    <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:.6rem;">Join the Movement</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.8rem;">Together, we can change outcomes.</h2>
+    <p style="font-size:.88rem;opacity:.82;max-width:480px;margin:0 auto 1.5rem;line-height:1.7;">Every donation, every share, every conversation brings us closer to a world where no woman faces breast cancer alone.</p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://gofund.me/a456eb25f" target="_blank" rel="noopener" style="padding:.72rem 1.7rem;background:white;color:var(--magenta);border-radius:50px;font-weight:700;font-size:.86rem;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;">Donate Now</a>
+      <button onclick="showSection('giveback')" style="padding:.72rem 1.7rem;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:50px;font-weight:600;font-size:.86rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Get Involved</button>
+    </div>
+  </div>
+</section>
+
+<!-- ASK OUR AI -->
+<section id="ai-chat">
+  <div class="section-inner">
+    <p class="section-tag fade-in">Ask Anything</p>
+    <h2 class="section-title fade-in">Breast Cancer <em>Q&amp;A</em></h2>
+    <div class="divider fade-in"></div>
+    <p class="fade-in" style="color:var(--muted);max-width:570px;margin-bottom:1.9rem;line-height:1.77;font-size:.92rem;">Have a question about breast cancer — screenings, symptoms, treatment options, or statistics? Our AI assistant provides clear, informative, educational answers.</p>
+    <div class="chat-box fade-in">
+      <div class="chat-hdr">
+        <div class="chat-hdr-av">&#127801;</div>
+        <div><h3>Pink Powher AI</h3><p><span class="odot"></span>Breast Cancer Information Assistant</p></div>
+      </div>
+      <div class="chat-msgs" id="chatMsgs">
+        <div class="msg bot"><div class="msg-bubble">Hi! I'm here to answer your questions about breast cancer — including screening recommendations, risk factors, stages, treatment options, and how to support a loved one. What would you like to know?</div><div class="msg-time">Just now</div></div>
+      </div>
+      <div class="chat-topics">
+        <button class="tchip" onclick="askTopic('What are the early signs of breast cancer?')">Early signs</button>
+        <button class="tchip" onclick="askTopic('When should I get my first mammogram?')">Mammograms</button>
+        <button class="tchip" onclick="askTopic('What are the stages of breast cancer?')">Stages</button>
+        <button class="tchip" onclick="askTopic('What are common breast cancer risk factors?')">Risk factors</button>
+        <button class="tchip" onclick="askTopic('How can I support someone with breast cancer?')">Supporting loved ones</button>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Ask a breast cancer question…" onkeydown="if(event.key==='Enter')sendChat()"/>
+        <button class="csend" id="sendBtn" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+    <div class="ai-disc fade-in">
+      <strong>Disclaimer:</strong> The AI assistant on this page is for <strong>informational and educational purposes only</strong>. It is <strong>NOT a licensed medical professional</strong> and its responses do not constitute medical advice, diagnosis, or treatment recommendations. Always consult a qualified healthcare provider for personal medical concerns. If you are experiencing symptoms, contact your doctor immediately.
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--magenta),var(--deep));padding:3.2rem 5vw;text-align:center;color:white;">
+    <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:.6rem;">Join the Movement</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.8rem;">Together, we can change outcomes.</h2>
+    <p style="font-size:.88rem;opacity:.82;max-width:480px;margin:0 auto 1.5rem;line-height:1.7;">Every donation, every share, every conversation brings us closer to a world where no woman faces breast cancer alone.</p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://gofund.me/a456eb25f" target="_blank" rel="noopener" style="padding:.72rem 1.7rem;background:white;color:var(--magenta);border-radius:50px;font-weight:700;font-size:.86rem;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;">Donate Now</a>
+      <button onclick="showSection('giveback')" style="padding:.72rem 1.7rem;background:transparent;color:white;border:2px solid rgba(255,255,255,.6);border-radius:50px;font-weight:600;font-size:.86rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Get Involved</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ REDESIGNED FOOTER ═══════ -->
+<footer class="site-footer">
+  <div class="footer-main">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <div class="fl">Pink <span>Powher</span></div>
+      <p class="footer-tagline">
+        <em>Raising funds. Raising awareness. Raising hope.</em><br>
+        A student women-led nonprofit on a mission to end breast cancer's silence — one community at a time.
+      </p>
+      <div class="footer-ribbon">
+        <div class="footer-ribbon-icon">🎀</div>
+        <div class="footer-ribbon-text">
+          <strong>Student Women-Led</strong>
+          Founded 2025 · Fort Lauderdale, FL
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigate col -->
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a onclick="showSection('home')">Home</a></li>
+        <li><a onclick="showSection('about')">About Us</a></li>
+        <li><a onclick="showSection('blog')">Blog</a></li>
+        <li><a onclick="showSection('giveback')">Give Back</a></li>
+        <li><a onclick="showSection('anatomy')">Know Your Body</a></li>
+        <li><a onclick="showSection('ai-chat')">Ask Our AI</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact col -->
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:.9rem;">We'd love to hear from you — whether you want to volunteer, collaborate, or simply share your story.</p>
+      <a class="footer-contact-link" href="mailto:dzighelboim@icloud.com">
+        <div class="footer-contact-icon">✉️</div>
+        <div class="footer-contact-text">
+          <span>Email us</span>
+          <span>dzighelboim@icloud.com</span>
+        </div>
+      </a>
+      <div style="margin-top:1.1rem;">
+        <a href="https://gofund.me/a456eb25f" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--magenta),var(--deep));color:white;text-decoration:none;padding:.6rem 1.1rem;border-radius:50px;font-size:.76rem;font-weight:600;font-family:'DM Sans',sans-serif;transition:opacity .2s;"
+           onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          🎀 Donate Now
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="footer-divider"/>
+
+  <div class="footer-bottom">
+    <span class="footer-bottom-left">© 2026 Pink Powher. All rights reserved.</span>
+    <div class="footer-badge">
+      <span>Student Women-Led Nonprofit</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const pageTabs = ['home','about','blog','giveback','anatomy','ai-chat'];
+
+function showSection(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const i = pageTabs.indexOf(id);
+  if (i >= 0) document.querySelectorAll('.nav-links a')[i].classList.add('active');
+
+  // Toggle nav badge visibility — hide on Give Back only
+  const badge = document.querySelector('.nav-badge');
+  if (badge) badge.style.display = (id === 'giveback') ? 'none' : '';
+
+  window.scrollTo({top:0, behavior:'smooth'});
+  setTimeout(animateFade, 100);
+}
+
+function animateFade() {
+  document.querySelectorAll('.fade-in').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight + 30) el.classList.add('visible');
+  });
+}
+window.addEventListener('scroll', animateFade);
+setTimeout(animateFade, 220);
+
+function showToast(m) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+// BLOG
+function publishPost() {
+  const title = document.getElementById('blogTitle').value.trim();
+  const preview = document.getElementById('blogPreview').value.trim();
+  const cat = document.getElementById('blogCat').value;
+  const img = document.getElementById('blogImg').value.trim();
+  if (!title) { showToast('Please add a title!'); return; }
+  const c = document.createElement('div');
+  c.className = 'blog-card fade-in visible';
+  c.innerHTML = '<div class="blog-card-img" style="background:linear-gradient(135deg,var(--blush),var(--accent));">'
+    + (img ? '<img src="' + img + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'"/>' : '')
+    + '</div><div class="blog-card-body"><span class="blog-tag-pill">' + cat + '</span><h3>' + title + '</h3><p>'
+    + (preview || 'Read more about this topic.') + '</p><div class="blog-card-footer"><span class="blog-date">'
+    + new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'})
+    + '</span><span class="blog-read">Read More</span></div></div>';
+  document.getElementById('blogGrid').insertBefore(c, document.getElementById('blogGrid').firstChild);
+  ['blogTitle','blogPreview','blogContent','blogAuthor','blogImg'].forEach(id => document.getElementById(id).value = '');
+  showToast('Blog post published!');
+}
+
+// VOLUNTEER
+function submitVolunteer() {
+  const f = document.getElementById('volFirst').value.trim();
+  const e = document.getElementById('volEmail').value.trim();
+  if (!f || !e) { showToast('Please fill in your name and email.'); return; }
+  showToast('Thank you, ' + f + '! We\'ll be in touch soon.');
+  ['volFirst','volLast','volEmail','volPhone','volCity','volHow'].forEach(id => document.getElementById(id).value = '');
+}
+
+// ANATOMY ZONES
+var zones = {
+  left: {
+    lbl: 'Left Breast', title: 'Left Breast — What to Look For',
+    desc: 'The left breast should be examined for any noticeable changes in size, shape, or contour compared to your right. Look for new lumps or areas of firmness not there before. A change in natural contour — dimpling or indentation — can be an early sign. Swelling or thickening anywhere in the breast, even without a distinct lump, warrants attention.',
+    warn: '<strong>Signs to watch:</strong> New lumps or thickening, change in size or shape, dimpling of the skin, unexplained swelling, persistent pain in one area.',
+    svg: '<svg viewBox="0 0 280 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;"><defs><radialGradient id="lg" cx="45%" cy="38%" r="65%"><stop offset="0%" style="stop-color:#fde8d8"/><stop offset="100%" style="stop-color:#e8a0b4"/></radialGradient></defs><rect width="280" height="155" fill="#fdf0f5" rx="12"/><text x="140" y="18" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="700">NORMAL VS LUMP/DIMPLING</text><ellipse cx="80" cy="90" rx="56" ry="50" fill="url(#lg)"/><ellipse cx="80" cy="90" rx="56" ry="50" fill="none" stroke="#c45c82" stroke-width="1.2" opacity=".4"/><circle cx="73" cy="93" r="8" fill="#c45c82" opacity=".3"/><text x="80" y="148" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#8a6070">Smooth contour (normal)</text><ellipse cx="200" cy="90" rx="56" ry="50" fill="url(#lg)"/><path d="M195 72 Q208 80 214 93 Q217 102 211 109 Q205 115 197 111" stroke="#a83060" stroke-width="2.5" fill="none" stroke-linecap="round"/><ellipse cx="204" cy="88" rx="10" ry="7" fill="rgba(168,48,96,.22)" stroke="#a83060" stroke-width="1"/><text x="200" y="148" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#a83060" font-weight="600">Dimpling / new lump</text></svg>'
+  },
+  right: {
+    lbl: 'Right Breast', title: 'Right Breast — Texture & Contour Changes',
+    desc: 'The right breast should mirror the left in size and shape (natural asymmetry is normal). Examine for puckering, ridges, or unusual firmness. Run fingers in a circular pattern from outside inward. Note any area that feels hard, irregular, or attached to underlying tissue. Skin texture resembling an orange peel can be a sign of inflammatory breast cancer.',
+    warn: '<strong>Signs to watch:</strong> Hard or immovable lump, skin thickening like orange peel, redness, warmth, new visible veins on the skin surface.',
+    svg: '<svg viewBox="0 0 280 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;"><defs><radialGradient id="rg" cx="55%" cy="38%" r="65%"><stop offset="0%" style="stop-color:#fde8d8"/><stop offset="100%" style="stop-color:#e8a0b4"/></radialGradient></defs><rect width="280" height="155" fill="#fdf0f5" rx="12"/><text x="140" y="18" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="700">SKIN TEXTURE COMPARISON</text><ellipse cx="80" cy="90" rx="55" ry="48" fill="url(#rg)"/><text x="80" y="148" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#8a6070">Smooth (normal)</text><ellipse cx="200" cy="90" rx="55" ry="48" fill="url(#rg)"/><circle cx="188" cy="78" r="2.5" fill="#c45c82" opacity=".35"/><circle cx="198" cy="74" r="2" fill="#c45c82" opacity=".3"/><circle cx="207" cy="79" r="2.5" fill="#c45c82" opacity=".35"/><circle cx="194" cy="84" r="2" fill="#c45c82" opacity=".3"/><circle cx="184" cy="87" r="2.5" fill="#c45c82" opacity=".35"/><circle cx="210" cy="89" r="2" fill="#c45c82" opacity=".3"/><circle cx="200" cy="96" r="2.5" fill="#c45c82" opacity=".35"/><circle cx="189" cy="98" r="2" fill="#c45c82" opacity=".3"/><text x="200" y="148" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#a83060" font-weight="600">Peau d\'orange texture</text></svg>'
+  },
+  upper: {
+    lbl: 'Upper Outer Quadrant', title: 'Upper Region — Most Common Cancer Zone',
+    desc: 'The upper outer quadrant is where nearly 50% of breast cancers are found. This area extends from the nipple upward and outward toward the armpit. Look for lumps near the collarbone, unusual firmness or thickening near the armpit, or visible changes in how the breast sits.',
+    warn: '<strong>Signs to watch:</strong> Lumps or thickening near the upper breast or armpit border, persistent tenderness in one area, visible bulge or new fullness.',
+    svg: '<svg viewBox="0 0 280 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;"><rect width="280" height="155" fill="#fdf0f5" rx="12"/><text x="140" y="17" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="700">UPPER OUTER QUADRANT</text><ellipse cx="140" cy="98" rx="88" ry="53" fill="#fde8d8"/><ellipse cx="140" cy="98" rx="88" ry="53" fill="none" stroke="#e8a0b4" stroke-width="1.4"/><path d="M140 98 L92 58 Q116 44 140 44 Q164 44 188 58 Z" fill="#a83060" opacity=".17" stroke="#a83060" stroke-width="1.4" stroke-dasharray="5,3"/><text x="140" y="74" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#a83060" font-weight="700">~50% of cancers</text><text x="140" y="85" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#a83060">originate in this quadrant</text><circle cx="140" cy="101" r="8" fill="#c45c82" opacity=".3"/><line x1="140" y1="48" x2="140" y2="148" stroke="#c45c82" stroke-width="1" stroke-dasharray="4,4" opacity=".38"/><line x1="55" y1="98" x2="225" y2="98" stroke="#c45c82" stroke-width="1" stroke-dasharray="4,4" opacity=".38"/></svg>'
+  },
+  nipple: {
+    lbl: 'Nipple & Areola', title: 'Nipple & Areola — Changes to Monitor',
+    desc: "The nipple and areola can show some of the earliest visible signs of breast cancer. A new inverted nipple (not lifelong), discharge (especially bloody or from only one breast), crusting, scaling, or a rash around the areola should all be evaluated. Paget's disease often first appears as eczema-like skin changes around the nipple.",
+    warn: '<strong>Signs to watch:</strong> New nipple inversion, bloody or clear discharge from one nipple, rash or scaling around the areola, sore or ulcerated nipple that does not heal.',
+    svg: '<svg viewBox="0 0 280 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;"><rect width="280" height="155" fill="#fdf0f5" rx="12"/><text x="140" y="17" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="700">NIPPLE AREA CHANGES</text><ellipse cx="75" cy="88" rx="44" ry="40" fill="#fde8d8"/><circle cx="75" cy="90" r="15" fill="#e8a0b4" opacity=".45"/><circle cx="75" cy="90" r="8" fill="#c45c82" opacity=".5"/><text x="75" y="143" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#8a6070">Normal nipple</text><ellipse cx="175" cy="88" rx="44" ry="40" fill="#fde8d8"/><circle cx="175" cy="90" r="15" fill="#e8a0b4" opacity=".45"/><path d="M167 90 Q175 84 183 90 Q179 97 175 97 Q171 97 167 90Z" fill="#a83060" opacity=".58"/><path d="M175 98 Q178 107 176 114" stroke="#a83060" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".6"/><circle cx="176" cy="116" r="2.8" fill="#a83060" opacity=".5"/><text x="175" y="143" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#a83060" font-weight="600">Inversion + discharge</text></svg>'
+  },
+  armpit: {
+    lbl: 'Underarm / Axillary Region', title: 'Underarm — Lymph Node Awareness',
+    desc: 'The axillary (underarm) lymph nodes are often the first place breast cancer spreads beyond the breast. During a self-exam, extend your arm slightly and feel along the underarm area. Lumps, swelling, or tenderness in the armpit persisting more than two weeks should be evaluated.',
+    warn: '<strong>Signs to watch:</strong> Swollen or hard lymph nodes in the armpit, persistent tenderness without infection, a lump that feels attached or immovable, swelling in the arm or collarbone area.',
+    svg: '<svg viewBox="0 0 280 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;"><rect width="280" height="155" fill="#fdf0f5" rx="12"/><text x="140" y="17" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="700">AXILLARY LYMPH NODES</text><path d="M92 142 L92 58 Q132 48 162 53 Q192 48 222 58 L222 142Z" fill="#fde8d8" opacity=".65"/><path d="M92 58 Q67 73 62 108 Q77 113 90 106 Q92 83 102 73Z" fill="#fde8d8"/><ellipse cx="97" cy="88" rx="19" ry="27" fill="rgba(168,48,96,.09)" stroke="#c45c82" stroke-width="1.4" stroke-dasharray="4,3"/><circle cx="97" cy="80" r="5" fill="#e8a0b4" stroke="#c45c82" stroke-width="1.1"/><circle cx="89" cy="91" r="4.2" fill="#e8a0b4" stroke="#c45c82" stroke-width="1.1"/><circle cx="101" cy="95" r="4.8" fill="#e8a0b4" stroke="#c45c82" stroke-width="1.1"/><circle cx="91" cy="104" r="3.8" fill="#e8a0b4" stroke="#c45c82" stroke-width="1.1"/><text x="97" y="128" text-anchor="middle" font-family="DM Sans" font-size="7.5" fill="#a83060" font-weight="600">Lymph node cluster</text><ellipse cx="177" cy="98" rx="44" ry="39" fill="#fde8d8" opacity=".8"/><circle cx="172" cy="101" r="7" fill="#c45c82" opacity=".28"/><path d="M163 88 L117 82" stroke="#a83060" stroke-width="1.4" stroke-dasharray="4,3" fill="none"/><text x="140" y="76" text-anchor="middle" font-family="DM Sans" font-size="7.5" fill="#a83060">can spread here</text></svg>'
+  },
+  skin: {
+    lbl: 'Skin Changes', title: 'Skin Changes Across the Breast',
+    desc: 'The skin overlying the breast can reflect changes in the tissue beneath. Redness, warmth, and rapid swelling may indicate inflammatory breast cancer. Dimpling — where the skin pulls inward — can indicate a tumor tethering the skin. Any lasting rash, unusual discoloration, thickening, or peeling of breast skin should be examined.',
+    warn: '<strong>Signs to watch:</strong> Unexplained redness or rash, skin that looks dimpled like an orange peel, areas of warmth without infection, veiny or discolored patches, peeling that does not resolve.',
+    svg: '<svg viewBox="0 0 280 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;"><rect width="280" height="155" fill="#fdf0f5" rx="12"/><text x="140" y="17" text-anchor="middle" font-family="DM Sans" font-size="8.5" fill="#a83060" font-weight="700">SKIN CHANGES TO RECOGNIZE</text><ellipse cx="72" cy="88" rx="50" ry="46" fill="#fde8d8"/><path d="M53 78 Q63 86 73 83 Q80 80 86 88 Q90 95 84 101" fill="rgba(168,48,96,.11)" stroke="#a83060" stroke-width="1"/><path d="M73 73 L73 63" stroke="#a83060" stroke-width="1.5" fill="none"/><circle cx="73" cy="62" r="2.4" fill="#a83060" opacity=".6"/><text x="72" y="145" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#a83060" font-weight="600">Dimpling</text><ellipse cx="198" cy="88" rx="50" ry="46" fill="#fde8d8"/><ellipse cx="198" cy="86" rx="29" ry="25" fill="rgba(196,92,130,.2)" stroke="#c45c82" stroke-width="1.1"/><ellipse cx="198" cy="86" rx="18" ry="16" fill="rgba(168,48,96,.17)"/><text x="198" y="145" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#a83060" font-weight="600">Redness / warmth</text></svg>'
+  }
+};
+
+function showZone(id) {
+  var z = zones[id]; if (!z) return;
+  document.getElementById('zoneLbl').textContent = z.lbl;
+  document.getElementById('zoneTitle').textContent = z.title;
+  document.getElementById('zoneDesc').textContent = z.desc;
+  document.getElementById('zoneIllus').innerHTML = '<div class="anat-illus">' + z.svg + '</div>';
+  var w = document.getElementById('zoneWarn'); w.innerHTML = z.warn; w.style.display = 'block';
+  document.querySelectorAll('.zone-btn').forEach(function(b) { b.classList.remove('zactive'); });
+  document.querySelectorAll('.zone-btn').forEach(function(b) {
+    if (b.textContent.toLowerCase().indexOf(z.lbl.toLowerCase().split(' ')[0]) === 0) b.classList.add('zactive');
+  });
+  document.getElementById('anatPanel').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// AI CHAT
+var SYS = 'You are a compassionate breast cancer information assistant for Pink Powher, a student women-led nonprofit. Provide clear, accurate, educational information about: symptoms/warning signs, screening/mammogram guidelines, risk factors, stages and types, treatment options, survival statistics, supporting loved ones, self-exam guidance. RULES: 1) NEVER diagnose anyone. 2) NEVER say someone has cancer based on symptoms. 3) Always encourage consulting a doctor for personal concerns. 4) Keep responses warm and empowering. 5) Respond in 3-6 sentences unless more detail is essential. 6) No medication dosages. 7) Stay on breast cancer topics only.';
+var hist = [];
+
+async function sendChat() {
+  var input = document.getElementById('chatInput');
+  var btn = document.getElementById('sendBtn');
+  var msg = input.value.trim();
+  if (!msg) return;
+  addMsg('user', msg);
+  input.value = '';
+  btn.disabled = true;
+  hist.push({role:'user', content:msg});
+  var ty = document.createElement('div');
+  ty.className = 'msg bot'; ty.id = 'typing';
+  ty.innerHTML = '<div class="msg-bubble"><div class="tdots"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div></div>';
+  document.getElementById('chatMsgs').appendChild(ty);
+  scrollChat();
+  try {
+    var r = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:1000, system:SYS, messages:hist})
+    });
+    var d = await r.json();
+    var rep = (d.content || []).map(function(c){return c.text||'';}).join('') || 'I had trouble answering that. Please try again.';
+    hist.push({role:'assistant', content:rep});
+    var t = document.getElementById('typing'); if (t) t.remove();
+    addMsg('bot', rep);
+  } catch(e) {
+    var t = document.getElementById('typing'); if (t) t.remove();
+    addMsg('bot', 'Something went wrong. Please check your connection.');
+  }
+  btn.disabled = false;
+}
+
+function askTopic(q) { document.getElementById('chatInput').value = q; sendChat(); }
+
+function addMsg(role, text) {
+  var w = document.createElement('div');
+  w.className = 'msg ' + role;
+  var t = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  w.innerHTML = '<div class="msg-bubble">' + text + '</div><div class="msg-time">' + t + '</div>';
+  document.getElementById('chatMsgs').appendChild(w);
+  scrollChat();
+}
+
+function scrollChat() {
+  var c = document.getElementById('chatMsgs');
+  c.scrollTop = c.scrollHeight;
+}
+
+// Firebase (placeholder — user can configure)
+const FIREBASE_CONFIG = null;
+async function loadSharedBlogPosts() {
+  if (!FIREBASE_CONFIG) return;
+  try {
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const { getFirestore, collection, getDocs, orderBy, query } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+    const app = initializeApp(FIREBASE_CONFIG, 'pp-website');
+    const db = getFirestore(app);
+    const q = query(collection(db, 'blog_posts'), orderBy('timestamp', 'desc'));
+    const snapshot = await getDocs(q);
+    snapshot.forEach(doc => {
+      const post = doc.data();
+      const c = document.createElement('div');
+      c.className = 'blog-card fade-in visible';
+      c.innerHTML = '<div class="blog-card-img" style="background:linear-gradient(135deg,var(--blush),var(--accent));">'
+        + (post.img ? '<img src="' + post.img + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'"/>' : '')
+        + '</div><div class="blog-card-body"><span class="blog-tag-pill">' + (post.cat||'General') + '</span><h3>' + post.title + '</h3><p>'
+        + (post.preview || '') + '</p><div class="blog-card-footer"><span class="blog-date">' + (post.date||'') + '</span><span class="blog-read">Read More</span></div></div>';
+      document.getElementById('blogGrid').insertBefore(c, document.getElementById('blogGrid').firstChild);
+    });
+  } catch(e) { console.warn('Blog load error:', e); }
+}
+loadSharedBlogPosts();
+</script>
+
+<!-- ARTICLE MODAL -->
+<div class="article-overlay" id="articleOverlay" onclick="handleOverlayClick(event)">
+  <div class="article-modal" id="articleModal">
+    <div id="articleHeroWrap"></div>
+    <div class="article-body">
+      <div class="article-meta">
+        <span class="article-tag" id="aTag"></span>
+        <span class="article-date" id="aDate"></span>
+        <span class="article-author" id="aAuthor"></span>
+      </div>
+      <h1 class="article-title" id="aTitle"></h1>
+      <div class="article-content" id="aContent"></div>
+    </div>
+    <div class="article-close-bar">
+      <span style="font-size:.76rem;color:var(--muted);">Pink Powher Blog</span>
+      <button class="article-close-btn" onclick="closeArticle()">← Back to Blog</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var articles = {
+  gabriela: {
+    tag: 'Survivor Stories',
+    date: 'March 2026',
+    author: 'Pink Powher Team',
+    title: 'She Was 29 When They Found It — And She Wants You to Know Her Story',
+    hero: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=900&q=80',
+    content: `
+      <p>Gabriela was 29 years old, healthy by every measure she knew, when she felt something she hadn't felt before — a small, firm lump in her left breast, no bigger than a grape. She almost didn't call her doctor. She told herself it was probably nothing. A cyst, maybe. Something that would go away.</p>
+      <p>It didn't go away. And when she finally went in, the words "stage two invasive ductal carcinoma" changed the entire shape of her life.</p>
+      <blockquote><p>"I remember sitting in the car after the appointment and just staring at the steering wheel. I couldn't cry yet. I didn't know how to feel something that big."</p></blockquote>
+      <h4>The First Few Weeks</h4>
+      <p>Gabriela describes the weeks following her diagnosis as a blur of appointments, second opinions, and paperwork. She was referred to an oncologist, had a biopsy, and started learning a vocabulary she never expected to need — hormone receptor positive, lymph node involvement, chemotherapy protocol. She was still going to class.</p>
+      <p>"I was finishing my junior year," she says. "I had finals. I had a group project. And I also had cancer. Those two realities were just sitting next to each other and I had to figure out how to hold both of them."</p>
+      <h4>What Chemo Actually Felt Like</h4>
+      <p>Gabriela started chemotherapy six weeks after her diagnosis. She had four rounds of AC — a combination known for being particularly rough — followed by twelve weekly rounds of Taxol. She lost her hair after the third infusion. She had bought a wig beforehand, a dark brown one that matched her natural color, but she says she only wore it a handful of times.</p>
+      <blockquote><p>"I thought I'd be devastated about my hair. And I was, for about two days. Then I was just too tired to care about anything except getting through the next treatment."</p></blockquote>
+      <p>The fatigue, she says, was unlike anything she'd ever experienced. Not tiredness — something heavier. "You could sleep for twelve hours and wake up feeling like you hadn't slept at all. Your body is fighting so hard, and you can feel it."</p>
+      <h4>The Moment She Realized She Wasn't Alone</h4>
+      <p>About two months into treatment, a friend brought Gabriela to a local support group for young women with breast cancer. She had resisted going, convinced she wouldn't relate to anyone there, that her experience was too specific or too raw to share out loud.</p>
+      <p>She stayed for three hours. She went back every week after that.</p>
+      <p>"These women knew exactly what I meant when I said things I couldn't say to anyone else. They knew what it felt like to look in the mirror and not recognize yourself. They knew what it felt like to be scared and also fiercely, weirdly grateful to still be here."</p>
+      <h4>Now</h4>
+      <p>Gabriela completed treatment in the fall and received clear scans shortly before the new year. She is in remission. She has started growing her hair back — "it's coming in curly, which it never was before, which is apparently a thing" — and she has returned to school full-time.</p>
+      <p>She shares her story not because it has a happy ending, she says, but because too many women her age assume breast cancer doesn't happen to them. It does. It happened to her at 29, with no family history, no known risk factors, just a lump she almost decided wasn't worth mentioning.</p>
+      <blockquote><p>"If you feel something, say something. To your doctor, to yourself. Do not wait. That's the only thing I want anyone to take from this."</p></blockquote>
+      <p style="font-size:.82rem;color:var(--muted);font-style:italic;">If you've been affected by breast cancer and would like to share your story with the Pink Powher community, reach out to us at dzighelboim@icloud.com.</p>
+    `
+  },
+  selfexam: {
+    tag: 'Early Detection',
+    date: 'February 2026',
+    author: 'Pink Powher Team',
+    title: 'The Self-Exam That Changed Everything: What Doctors Want Every Woman to Know',
+    hero: null,
+    heroBg: 'linear-gradient(135deg,var(--blush),var(--accent))',
+    content: `
+      <p>Most women have heard they should do breast self-exams. Far fewer actually do them — and of those who do, many aren't sure they're doing them correctly. This guide covers exactly what to look for, how to check, and when to act.</p>
+      <p>A monthly self-exam takes less than five minutes. It doesn't require any equipment. It doesn't require a medical background. And according to research, a significant number of breast cancers are first detected by the patients themselves — not during a clinical exam or mammogram, but in everyday moments of self-awareness.</p>
+      <h4>When to Check</h4>
+      <p>For women who menstruate, the best time to do a self-exam is about a week after your period ends, when breasts are least likely to be swollen or tender. For women who don't menstruate — due to menopause, pregnancy, or other reasons — pick the same date every month and make it a habit.</p>
+      <h4>What to Look For (Visual)</h4>
+      <p>Stand in front of a mirror with your shoulders straight and your arms on your hips. Look for any changes in size, shape, or contour. You're specifically watching for dimpling or puckering of the skin, any redness or rash, a nipple that has recently changed position or inverted, or any discharge from one or both nipples.</p>
+      <p>Then raise your arms above your head and look again. Certain changes only become visible when the arms are raised.</p>
+      <blockquote><p>"A lot of women think they'd obviously notice something wrong. But subtle skin dimpling, for example, can be very easy to miss if you're not specifically looking for it." — Breast health education resource</p></blockquote>
+      <h4>What to Feel For</h4>
+      <p>Lie down and use your right hand to feel your left breast, and vice versa. Use the pads of your three middle fingers — not the tips — and apply three levels of pressure: light (for just under the skin), medium (for the middle of the breast tissue), and firm (for the deep tissue closer to the chest wall).</p>
+      <p>Move in a circular pattern, working from the outside inward, covering the entire breast including the armpit and up to the collarbone. Don't rush. Take your time with each section.</p>
+      <p>You're feeling for any new lump, hard knot, or area of thickening. Remember: most lumps are not cancer. But any lump that is new, persistent, or growing should be evaluated by a doctor — not ignored, and not Googled into reassurance.</p>
+      <h4>When to Call Your Doctor</h4>
+      <p>Contact your healthcare provider if you notice: a new lump or thickening that doesn't go away after your next period; any change in skin texture, color, or temperature; nipple discharge that appears without squeezing; or anything that simply feels different from how your breast has felt before.</p>
+      <p>You know your body better than anyone. Trust that knowledge. A call to your doctor costs nothing. Waiting costs time — and time matters.</p>
+      <h4>Mammograms Are Still Essential</h4>
+      <p>Self-exams are a powerful tool, but they are not a replacement for mammograms. The American Cancer Society currently recommends annual mammograms beginning at age 40 for women at average risk. Women with a family history of breast cancer or other risk factors may need to start earlier — talk to your doctor about what's right for you.</p>
+      <p>Early detection saves lives. A self-exam is something you can do right now, for free, in five minutes. There is no reason to wait.</p>
+      <p style="font-size:.82rem;color:var(--muted);font-style:italic;">This article is for educational purposes only and is not a substitute for professional medical advice. Please consult your healthcare provider with any concerns about your breast health.</p>
+    `
+  },
+  origin: {
+    tag: 'Community',
+    date: 'January 2026',
+    author: 'Pink Powher Team',
+    title: 'How Pink Powher Got Started: A Group of College Women Who Said Enough',
+    hero: null,
+    heroBg: 'linear-gradient(135deg,var(--petal),var(--rose))',
+    content: `
+      <p>Pink Powher didn't begin with a business plan. It didn't begin with a grant application or a faculty advisor or a formal proposal. It began, the way a lot of important things do, with grief — and with a group of young women who decided that grief wasn't enough of a reason to stay quiet.</p>
+      <h4>The Conversation That Started It</h4>
+      <p>In early 2025, a small group of college students found themselves talking about breast cancer in the way that people do when it has touched their lives personally — not clinically, not statistically, but through the specific and irreplaceable faces of people they loved. A grandmother. An aunt. A family friend who was diagnosed at 34 and gone by 37.</p>
+      <p>What started as that conversation became a question: what were they actually doing about it? Not abstractly, not someday — but right now, with the time and energy and community they already had?</p>
+      <blockquote><p>"We kept talking about how breast cancer disproportionately devastates families and yet the conversation around it still feels distant for a lot of young women. Like it's something that happens to other people, older people. We wanted to close that gap."</p></blockquote>
+      <h4>Building Something Real</h4>
+      <p>The early months of Pink Powher were scrappy in the best sense. The founding members researched what it meant to establish a nonprofit, connected with local breast cancer organizations, and started hosting small awareness events on campus. They passed out informational flyers. They organized a donation drive for patients undergoing chemotherapy — collecting blankets and socks, practical items that can make a long treatment day a little more bearable.</p>
+      <p>They also started listening. They talked to survivors. They talked to oncology nurses. They sat with people who had been through treatment and asked the simple, important question: what do you wish more people understood?</p>
+      <h4>Why Student-Led Matters</h4>
+      <p>There is something specific that happens when young women organize around an issue that has historically been treated as something to whisper about. They don't whisper. They post. They text. They reach their peers in the language their peers actually speak — through social media, through campus events, through the kind of word-of-mouth that only works when the messengers are trusted and present and real.</p>
+      <p>Pink Powher is built on the belief that awareness, when it comes from within a community, lands differently than awareness that comes from a pamphlet or a billboard. That proximity matters. That when your friend tells you to get checked, you're more likely to actually do it.</p>
+      <h4>Where We Are Now</h4>
+      <p>Pink Powher is still young. We are still learning. But we have raised funds for patients in our community, run awareness campaigns that have reached people we've never met, and built a volunteer network of people who show up — to drive someone to a treatment appointment, to pack donation bags, to simply be present for someone who needs to not be alone.</p>
+      <p>We are not done. We are just beginning. And if you're reading this, you're already part of it.</p>
+      <p style="font-size:.82rem;color:var(--muted);font-style:italic;">Want to get involved? Sign up to volunteer or donate through our Give Back page — every contribution, large or small, goes directly to the people who need it.</p>
+    `
+  },
+  aftertreatment: {
+    tag: 'Wellness',
+    date: 'December 2025',
+    author: 'Pink Powher Team',
+    title: 'Life After Treatment: The Things Nobody Talks About',
+    hero: null,
+    heroBg: 'linear-gradient(135deg,var(--accent),var(--deep))',
+    content: `
+      <p>There is a moment, after the last chemotherapy infusion or the final radiation session or the surgery that was supposed to fix everything, when the medical world steps back and tells you that you're done. Treatment is over. You made it.</p>
+      <p>For many survivors, this moment is nothing like what they imagined it would be.</p>
+      <blockquote><p>"Everyone expects you to be celebrating. And part of you is. But another part of you is terrified, because the thing that was keeping the cancer away is now gone, and you don't know what happens next."</p></blockquote>
+      <h4>The Fatigue That Doesn't Leave</h4>
+      <p>One of the most commonly reported and least commonly discussed aspects of life after breast cancer treatment is post-treatment fatigue. This is not ordinary tiredness. It is a deep, persistent exhaustion that can last months or even years after treatment ends, and it does not always respond to rest.</p>
+      <p>Researchers believe it stems from a combination of factors: the physical toll of chemotherapy and radiation on healthy cells, hormonal changes, disrupted sleep, anemia, and the ongoing psychological weight of the experience. It can affect concentration, mood, and the ability to return to work or school at the pace survivors expect of themselves.</p>
+      <p>Knowing that this is real — that it is not weakness, not laziness, not something to push through with enough willpower — is one of the most important things a survivor can be told.</p>
+      <h4>The Emotional Landscape</h4>
+      <p>Many survivors describe an emotional experience after treatment that is more complicated than what they felt during it. During treatment, there is a clear enemy and a clear plan. After treatment, there is uncertainty — the fear of recurrence, the loss of the structured support that comes with regular medical appointments, and a quiet, disorienting grief for the version of themselves that existed before diagnosis.</p>
+      <p>This grief is real and it is normal. It doesn't mean something has gone wrong. It means something significant happened, and the body and mind are processing it on their own timeline.</p>
+      <blockquote><p>"I kept waiting to feel like myself again. And eventually I realized — this is myself now. A different version, maybe, but still me. That was actually freeing."</p></blockquote>
+      <h4>What Helps</h4>
+      <p>Research and survivor testimony point to a few things that consistently make a difference in life after treatment. Community is near the top of the list — whether through formal support groups, online forums, or simply the presence of people who have been through something similar. Movement, even gentle movement like walking, has been shown to reduce fatigue and improve mood. Therapy, particularly with a counselor who has experience working with cancer survivors, can provide tools for managing anxiety about recurrence.</p>
+      <p>And perhaps most importantly: permission. Permission to not be okay right away. Permission to take longer than expected. Permission to define recovery on your own terms rather than someone else's timeline.</p>
+      <h4>A Note on Recurrence Anxiety</h4>
+      <p>Fear of recurrence is one of the most universal experiences reported by breast cancer survivors, regardless of stage or treatment outcome. It is often triggered by physical sensations — an ache, a new lump, a moment of unexpected fatigue — that sends the mind immediately back to the worst days.</p>
+      <p>This is not irrational. It is a reasonable response to having lived through something serious. But when it begins to interfere with daily life, when it prevents you from going to follow-up appointments or keeps you from being present in moments of joy, it is worth speaking with your care team about. You do not have to manage that fear alone.</p>
+      <p>Recovery is not a straight line. It is not a single moment of relief. It is a long, uneven, sometimes beautiful, sometimes exhausting process — and it deserves just as much support as the treatment that came before it.</p>
+      <p style="font-size:.82rem;color:var(--muted);font-style:italic;">Pink Powher is here for every part of the journey — not just the diagnosis. If you or someone you love is navigating life after breast cancer, we'd love to connect. Reach out at dzighelboim@icloud.com.</p>
+    `
+  }
+};
+
+function openArticle(id) {
+  var a = articles[id];
+  if (!a) return;
+  document.getElementById('aTag').textContent = a.tag;
+  document.getElementById('aDate').textContent = a.date;
+  document.getElementById('aAuthor').textContent = '· ' + a.author;
+  document.getElementById('aTitle').textContent = a.title;
+  document.getElementById('aContent').innerHTML = a.content;
+  var heroWrap = document.getElementById('articleHeroWrap');
+  if (a.hero) {
+    heroWrap.innerHTML = '<img class="article-hero" src="' + a.hero + '" alt="" onerror="this.style.display=\'none\'"/>';
+  } else if (a.heroBg) {
+    heroWrap.innerHTML = '<div class="article-hero-bg" style="background:' + a.heroBg + ';"></div>';
+  } else {
+    heroWrap.innerHTML = '';
+  }
+  var overlay = document.getElementById('articleOverlay');
+  overlay.classList.add('open');
+  overlay.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('articleOverlay').classList.remove('open');
+  document.body.style.overfl
